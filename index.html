@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Catálogo de Produtos</h1>
+        <button id="admin-btn" title="Acesso Administrativo">⚙️</button> <!-- Botão discreto -->
+    </header>
+
+    <main>
+        <section id="cadastro-produto" style="display: none;"> <!-- Oculto por padrão -->
+            <h2>Achados Secretos</h2>
+            <form id="form-produto">
+                <label for="nome-produto">Nome do Produto:</label>
+                <input type="text" id="nome-produto" name="nome-produto" required>
+
+                <label for="link-produto">Link Externo:</label>
+                <input type="url" id="link-produto" name="link-produto" placeholder="https://exemplo.com" required>
+
+                <label for="imagem-produto">URL da Imagem (Opcional):</label>
+                <input type="url" id="imagem-produto" name="imagem-produto" placeholder="https://exemplo.com/imagem.jpg">
+
+                <label for="categoria-produto">Categoria:</label>
+                <select id="categoria-produto" name="categoria-produto">
+                    <option value="">-- Selecione ou Crie --</option>
+                    <!-- Categorias existentes serão adicionadas aqui via JS -->
+                </select>
+                <label for="nova-categoria">Ou Nova Categoria:</label>
+                <input type="text" id="nova-categoria" name="nova-categoria" placeholder="Digite o nome da nova categoria">
+
+                <button type="submit">Cadastrar Produto</button>
+            </form>
+        </section>
+
+        <section id="filtros">
+            <h2>Filtros</h2>
+            <label for="filtro-categoria">Filtrar por Categoria:</label>
+            <select id="filtro-categoria" name="filtro-categoria">
+                <option value="todos">Todas as Categorias</option>
+                <!-- Categorias existentes serão adicionadas aqui via JS -->
+            </select>
+
+            <label for="filtro-ordem">Ordenar por:</label>
+            <select id="filtro-ordem" name="filtro-ordem">
+                <option value="recentes">Mais Recentes</option>
+                <option value="antigos">Mais Antigos</option>
+                <option value="az">Nome (A-Z)</option>
+                <option value="za">Nome (Z-A)</option>
+            </select>
+            <button id="aplicar-filtros">Aplicar Filtros</button>
+        </section>
+
+        <section id="lista-produtos">
+            <h2>Produtos</h2>
+            <div id="produtos-container">
+                <!-- Produtos serão exibidos aqui -->
+                <p>Nenhum produto cadastrado ainda.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Catálogo de Produtos</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
