@@ -1,43 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Seletores de Elementos DOM
-    const adminBtn = document.getElementById("admin-btn");
-    const cadastroProdutoSection = document.getElementById("cadastro-produto");
-    const formProduto = document.getElementById("form-produto");
-    const nomeProdutoInput = document.getElementById("nome-produto");
-    const linkProdutoInput = document.getElementById("link-produto");
-    const imagemProdutoInput = document.getElementById("imagem-produto"); // Novo campo
-    const categoriaProdutoSelect = document.getElementById("categoria-produto");
-    const novaCategoriaInput = document.getElementById("nova-categoria");
+    // --- Dados Estáticos dos Produtos ---
+    // Substitua este array pelos seus produtos reais
+    const produtos = [
+        {
+            id: 1,
+            nome: "Bola automática brinquedo de gato",
+            link: "https://s.shopee.com.br/5AfcEodms6",
+            imagemSrc: "images/bola_gato.png", // Caminho local da imagem
+            categoria: "Pets",
+            timestamp: new Date("2025-05-01T10:00:00Z").getTime()
+        },
+        {
+            id: 2,
+            nome: "Produto Exemplo 2",
+            link: "https://example.com/produto2",
+            imagemSrc: "images/placeholder2.jpg", // Caminho local da imagem
+            categoria: "Livros",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
+        {
+            id: 3,
+            nome: "Outro Produto Eletrônico",
+            link: "https://example.com/produto3",
+            imagemSrc: "images/placeholder3.jpg", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-04-30T15:45:00Z").getTime()
+        }
+        // Adicione mais produtos aqui...
+    ];
+
+    // Deriva categorias dos produtos estáticos
+    const categorias = [...new Set(produtos.map(p => p.categoria).filter(Boolean))]; // Filtra categorias vazias e pega valores únicos
+
+    // --- Seletores de Elementos DOM ---
+    // Elementos do formulário e admin removidos
     const produtosContainer = document.getElementById("produtos-container");
     const filtroCategoriaSelect = document.getElementById("filtro-categoria");
     const filtroOrdemSelect = document.getElementById("filtro-ordem");
     const aplicarFiltrosButton = document.getElementById("aplicar-filtros");
 
-    // Estado da Aplicação (inicial)
-    let produtos = JSON.parse(localStorage.getItem("produtos")) || [];
-    let categorias = JSON.parse(localStorage.getItem("categorias")) || [];
-    const adminPassword = "123"; // Senha para acesso admin
-
     // --- Funções Principais ---
 
-    // Função para carregar categorias nos selects
+    // Função para carregar categorias nos selects (adaptada para dados estáticos)
     function carregarCategorias() {
-        console.log("Carregando categorias...");
-        const categoriaSelecionadaCadastro = categoriaProdutoSelect.value;
+        console.log("Carregando categorias estáticas...");
         const categoriaSelecionadaFiltro = filtroCategoriaSelect.value;
 
         // Limpa opções existentes (exceto a primeira padrão)
-        categoriaProdutoSelect.innerHTML = '<option value="">-- Selecione ou Crie --</option>';
-        filtroCategoriaSelect.innerHTML = '<option value="todos">Todas as Categorias</option>';
+        filtroCategoriaSelect.innerHTML = 
+            '<option value="todos">Todas as Categorias</option>';
 
         categorias.sort(); // Ordena categorias alfabeticamente
 
         categorias.forEach(cat => {
-            const optionCadastro = document.createElement("option");
-            optionCadastro.value = cat;
-            optionCadastro.textContent = cat;
-            categoriaProdutoSelect.appendChild(optionCadastro);
-
             const optionFiltro = document.createElement("option");
             optionFiltro.value = cat;
             optionFiltro.textContent = cat;
@@ -45,29 +60,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Restaura a seleção anterior, se possível
-        if (categorias.includes(categoriaSelecionadaCadastro)) {
-             categoriaProdutoSelect.value = categoriaSelecionadaCadastro;
-        }
         if (categorias.includes(categoriaSelecionadaFiltro) || categoriaSelecionadaFiltro === 'todos') {
             filtroCategoriaSelect.value = categoriaSelecionadaFiltro;
         }
 
-        console.log("Categorias carregadas:", categorias);
+        console.log("Categorias estáticas carregadas:", categorias);
     }
 
-    // Função para exibir produtos na tela
+    // Função para exibir produtos na tela (adaptada para imagem local)
     function exibirProdutos(produtosParaExibir = produtos) {
-        console.log("Exibindo produtos:", produtosParaExibir);
+        console.log("Exibindo produtos estáticos:", produtosParaExibir);
         produtosContainer.innerHTML = ""; // Limpa container
 
         if (produtosParaExibir.length === 0) {
-            produtosContainer.innerHTML = "<p>Nenhum produto encontrado.</p>";
+            produtosContainer.innerHTML = "<p>Nenhum produto encontrado com os filtros aplicados.</p>";
             return;
         }
 
         // Aplica ordenação antes de exibir
         const ordem = filtroOrdemSelect.value;
-        let produtosOrdenados = [...produtosParaExibir]; // Cria cópia para não modificar original
+        let produtosOrdenados = [...produtosParaExibir];
 
         switch (ordem) {
             case "recentes":
@@ -89,35 +101,30 @@ document.addEventListener("DOMContentLoaded", () => {
             divProduto.classList.add("produto-item");
             divProduto.dataset.id = produto.id;
 
-            // Adiciona imagem se URL existir
+            // Adiciona imagem se src existir
             let imagemHTML = '';
-            if (produto.imagemUrl) {
-                // Adiciona onerror para caso a imagem falhe
-                imagemHTML = `<img src="${produto.imagemUrl}" alt="${produto.nome}" onerror="this.style.display='none';">`;
+            if (produto.imagemSrc) {
+                // Usa caminho local
+                imagemHTML = `<img src="${produto.imagemSrc}" alt="${produto.nome}" onerror="this.style.display='none'; this.parentElement.querySelector('.produto-info').style.marginTop='0';">`;
             }
 
             divProduto.innerHTML = `
                 ${imagemHTML}
-                <h3>${produto.nome}</h3>
-                <a href="${produto.link}" target="_blank" rel="noopener noreferrer">Acessar Link</a>
-                <p>Categoria: ${produto.categoria || "Sem Categoria"}</p>
-                <p><small>Cadastrado em: ${new Date(produto.timestamp).toLocaleString("pt-BR")}</small></p>
+                <div class="produto-info">
+                    <h3>${produto.nome}</h3>
+                    <a href="${produto.link}" target="_blank" rel="noopener noreferrer">Acessar Link</a>
+                    <p class="categoria">Categoria: ${produto.categoria || "Sem Categoria"}</p>
+                    <p><small>Cadastrado em: ${new Date(produto.timestamp).toLocaleString("pt-BR")}</small></p>
+                </div>
             `;
             produtosContainer.appendChild(divProduto);
         });
     }
 
-    // Função para salvar no localStorage
-    function salvarDados() {
-        localStorage.setItem("produtos", JSON.stringify(produtos));
-        localStorage.setItem("categorias", JSON.stringify(categorias));
-        console.log("Dados salvos no localStorage.");
-    }
-
-    // Função para filtrar produtos
+    // Função para filtrar produtos (adaptada para dados estáticos)
     function filtrarProdutos() {
         const categoriaFiltro = filtroCategoriaSelect.value;
-        let produtosFiltrados = produtos;
+        let produtosFiltrados = produtos; // Começa com todos os produtos estáticos
 
         if (categoriaFiltro !== "todos") {
             produtosFiltrados = produtos.filter(p => p.categoria === categoriaFiltro);
@@ -127,64 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- Event Listeners ---
-
-    // Event Listener para o botão Admin
-    adminBtn.addEventListener("click", () => {
-        const passwordAttempt = prompt("Digite a senha de administrador:");
-        if (passwordAttempt === adminPassword) {
-            cadastroProdutoSection.style.display = cadastroProdutoSection.style.display === "none" ? "block" : "none";
-        } else if (passwordAttempt !== null) { // Evita alert se o usuário cancelar o prompt
-            alert("Senha incorreta!");
-        }
-    });
-
-    // Event Listener para o formulário de cadastro
-    formProduto.addEventListener("submit", (event) => {
-        event.preventDefault();
-        console.log("Formulário de cadastro submetido.");
-
-        const nome = nomeProdutoInput.value.trim();
-        const link = linkProdutoInput.value.trim();
-        const imagemUrl = imagemProdutoInput.value.trim(); // Captura URL da imagem
-        let categoria = categoriaProdutoSelect.value;
-        const novaCategoria = novaCategoriaInput.value.trim();
-
-        if (!nome || !link) {
-            alert("Por favor, preencha o nome e o link do produto.");
-            return;
-        }
-
-        // Define a categoria
-        if (novaCategoria) {
-            categoria = novaCategoria;
-            if (!categorias.includes(categoria)) {
-                categorias.push(categoria);
-                carregarCategorias();
-            }
-        } else if (!categoria) {
-             categoria = "Sem Categoria";
-        }
-
-        const novoProduto = {
-            id: Date.now(),
-            nome: nome,
-            link: link,
-            imagemUrl: imagemUrl, // Salva URL da imagem
-            categoria: categoria,
-            timestamp: Date.now()
-        };
-
-        produtos.push(novoProduto);
-        salvarDados();
-        exibirProdutos(filtrarProdutos());
-
-        formProduto.reset();
-        categoriaProdutoSelect.value = "";
-        // Opcional: Ocultar formulário após cadastro bem-sucedido
-        // cadastroProdutoSection.style.display = "none";
-
-        console.log("Novo produto cadastrado:", novoProduto);
-    });
+    // Listener do formulário e botão admin removidos
 
     // Event Listener para aplicar filtros
     aplicarFiltrosButton.addEventListener("click", () => {
@@ -194,9 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Inicialização ---
-    console.log("Inicializando aplicação...");
+    console.log("Inicializando aplicação com dados estáticos...");
     carregarCategorias();
-    exibirProdutos(filtrarProdutos());
-    console.log("Aplicação inicializada.");
+    exibirProdutos(filtrarProdutos()); // Exibe produtos iniciais já filtrados/ordenados
+    console.log("Aplicação estática inicializada.");
 });
 

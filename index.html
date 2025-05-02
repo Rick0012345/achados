@@ -9,33 +9,11 @@
 <body>
     <header>
         <h1>Catálogo de Produtos</h1>
-        <button id="admin-btn" title="Acesso Administrativo">⚙️</button> <!-- Botão discreto -->
+        <!-- Botão Admin removido -->
     </header>
 
     <main>
-        <section id="cadastro-produto" style="display: none;"> <!-- Oculto por padrão -->
-            <h2>Achados Secretos</h2>
-            <form id="form-produto">
-                <label for="nome-produto">Nome do Produto:</label>
-                <input type="text" id="nome-produto" name="nome-produto" required>
-
-                <label for="link-produto">Link Externo:</label>
-                <input type="url" id="link-produto" name="link-produto" placeholder="https://exemplo.com" required>
-
-                <label for="imagem-produto">URL da Imagem (Opcional):</label>
-                <input type="url" id="imagem-produto" name="imagem-produto" placeholder="https://exemplo.com/imagem.jpg">
-
-                <label for="categoria-produto">Categoria:</label>
-                <select id="categoria-produto" name="categoria-produto">
-                    <option value="">-- Selecione ou Crie --</option>
-                    <!-- Categorias existentes serão adicionadas aqui via JS -->
-                </select>
-                <label for="nova-categoria">Ou Nova Categoria:</label>
-                <input type="text" id="nova-categoria" name="nova-categoria" placeholder="Digite o nome da nova categoria">
-
-                <button type="submit">Cadastrar Produto</button>
-            </form>
-        </section>
+        <!-- Seção de Cadastro Removida -->
 
         <section id="filtros">
             <h2>Filtros</h2>
@@ -56,10 +34,10 @@
         </section>
 
         <section id="lista-produtos">
-            <h2>Produtos</h2>
+            <h2>Produtos Cadastrados</h2>
             <div id="produtos-container">
                 <!-- Produtos serão exibidos aqui -->
-                <p>Nenhum produto cadastrado ainda.</p>
+                <p>Nenhum produto definido no código.</p> <!-- Mensagem atualizada -->
             </div>
         </section>
     </main>
