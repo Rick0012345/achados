@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 2,
-            nome: "Produto Exemplo 2",
+            nome: "Drone 5g",
             link: "https://example.com/produto2",
             imagemSrc: "images/placeholder2.jpg", // Caminho local da imagem
             categoria: "Livros",
