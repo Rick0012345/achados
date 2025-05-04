@@ -34,6 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Eletrônicos",
             timestamp: new Date("2025-05-02T11:30:00Z").getTime()
         },
+        {
+            id: 5,
+            nome: "Projetor 4K HD 150 Multimídia Compatível com Celular, TV Box, PC, Wi-Fi e Bluetooth Bivolt IDALI LIFE",
+            link: "https://s.shopee.com.br/8Uw7uUAwvq",
+            imagemSrc: "images/Projetor wifi.png", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
         
         
     ];
