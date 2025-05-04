@@ -12,21 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 2,
-            nome: "Drone 5g",
-            link: "https://example.com/produto2",
-            imagemSrc: "images/placeholder2.jpg", // Caminho local da imagem
-            categoria: "Livros",
+            nome: "Drones 8K 5G Novo Drone  GPS",
+            link: "https://s.shopee.com.br/AKNia4CJFv?share_channel_code=1",
+            imagemSrc: "images/drone_upscale.png", // Caminho local da imagem
+            categoria: "Eletrônicos",
             timestamp: new Date("2025-05-02T11:30:00Z").getTime()
         },
-        {
-            id: 3,
-            nome: "Outro Produto Eletrônico",
-            link: "https://example.com/produto3",
-            imagemSrc: "images/placeholder3.jpg", // Caminho local da imagem
-            categoria: "Eletrônicos",
-            timestamp: new Date("2025-04-30T15:45:00Z").getTime()
-        }
-        // Adicione mais produtos aqui...
+        
     ];
 
     // Deriva categorias dos produtos estáticos
