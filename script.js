@@ -18,6 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Eletrônicos",
             timestamp: new Date("2025-05-02T11:30:00Z").getTime()
         },
+        {
+            id: 3,
+            nome: "Videogame Portatil Jogos Retro 16GB",
+            link: "https://s.shopee.com.br/1LSxKvWhxx",
+            imagemSrc: "images/oie_console.jpg", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
+        {
+            id: 4,
+            nome: "Baseus Bowie WM02 TWS Fone De Ouvido Bluetooth Estéreo Sem Fio 5.2",
+            link: "https://s.shopee.com.br/5VIWKkS1dU",
+            imagemSrc: "images/Baseus_Fone.png", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
+        
         
     ];
 
