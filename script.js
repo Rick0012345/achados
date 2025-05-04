@@ -42,6 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Eletrônicos",
             timestamp: new Date("2025-05-02T11:30:00Z").getTime()
         },
+        {
+            id: 6,
+            nome: "Jogo Tabuleiro 7 em 1 Xadrez Dama Jogo da Velha Ludo Trilha Dominó Resta 1",
+            link: "https://s.shopee.com.br/xZm9z58N",
+            imagemSrc: "images/jogos_tablueiro.png", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
         
         
     ];
