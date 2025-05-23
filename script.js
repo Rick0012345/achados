@@ -50,7 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Eletrônicos",
             timestamp: new Date("2025-05-02T11:30:00Z").getTime()
         },
-        
+        {
+            id: 7,
+            nome: "Fritadeira Elétrica Koti 2,6L Petit 1000W 110v/220v",
+            link: "https://s.shopee.com.br/9pRyPOE3Iv",
+            imagemSrc: "images/fritadeira.webp", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
         
     ];
 
