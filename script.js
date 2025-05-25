@@ -50,8 +50,30 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Jogos de mesa",
             timestamp: new Date("2025-05-02T11:30:00Z").getTime()
         },
-        
-        
+        {
+            id: 7,
+            nome: "Fritadeira Elétrica Koti 2,6L Petit 1000W 110v/220v",
+            link: "https://s.shopee.com.br/9pRyPOE3Iv",
+            imagemSrc: "images/fritadeira.webp", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
+        {
+            id: 8,
+            nome: "Mini impressora térmica",
+            link: "https://s.shopee.com.br/6Ks6CChefG",
+            imagemSrc: "images/mini_impressora.png", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
+        {
+            id: 9,
+            nome: "Smartwatch W68 IWO 16",
+            link: "https://s.shopee.com.br/7KkdOIoVDJ",
+            imagemSrc: "images/relogiosmart.png", // Caminho local da imagem
+            categoria: "Eletrônicos",
+            timestamp: new Date("2025-05-02T11:30:00Z").getTime()
+        },
     ];
 
     // Deriva categorias dos produtos estáticos
